@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="az">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#08090a" />
+    <title>Avtoritet: Kohne Tunel</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="loading.js" defer></script>
+  </head>
+  <body class="cave-page">
+    <main class="cave-shell">
+      <section class="cave-stage" aria-label="3D labirint">
+        <div class="cave-picture" id="cavePicture" aria-hidden="true"></div>
+        <img class="cave-monster" id="caveMonsterImage" src="assets/caves/monster.png" alt="" aria-hidden="true" hidden />
+        <img class="cave-chest" id="caveChestImage" src="assets/caves/chest.png" alt="" aria-hidden="true" hidden />
+        <div class="cave-fallback" id="caveFallback">
+          <strong>Kohne Tunel</strong>
+          <span>Labirint yuklenir</span>
+        </div>
+        <canvas class="mini-map" id="miniMap" width="132" height="132"></canvas>
+        <div class="cave-hud">
+          <div>
+            <strong id="caveTitle">Kohne Tunel</strong>
+            <span id="caveInfo">Lvl 4+</span>
+          </div>
+          <a class="cave-exit" id="caveExit" href="caves.html" aria-label="Cixis">Cixis</a>
+        </div>
+        <div class="monster-panel" id="monsterPanel" hidden>
+          <strong id="monsterName">Tunel iti</strong>
+          <span id="monsterMeta">Qarsimda monster var</span>
+          <button id="attackMonster" type="button">Hucum et</button>
+        </div>
+      </section>
+
+      <section class="cave-controls" aria-label="Hereket">
+        <button type="button" data-turn="-1">Sol</button>
+        <button type="button" data-move="forward">Ireli</button>
+        <button type="button" data-turn="1">Sag</button>
+      </section>
+    </main>
+    <script src="cave.js"></script>
+  </body>
+</html>

@@ -1,0 +1,197 @@
+﻿<!doctype html>
+<html lang="az">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#111315" />
+    <title>Avtoritet: Baki Kuceleri</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="loading.js" defer></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="topbar" aria-label="Oyun statusu">
+        <div class="player-header">
+          <div class="profile-avatar" aria-hidden="true">
+            <img id="profileAvatarImage" src="assets/appearances/appearance-01.png" alt="" />
+          </div>
+          <div class="profile-main">
+            <p id="topPlayerName">Oyuncu</p>
+            <strong id="rankTitle">Yeni oyuncu</strong>
+          </div>
+        </div>
+        <div class="header-stats" aria-label="Profil gostericileri">
+          <span title="Enerji" aria-label="Enerji"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 13h6l-1 9 11-13h-7l1-7Z"/></svg><strong id="energyValue">0</strong></span>
+        </div>
+      </section>
+      <section class="vitals-strip" aria-label="Can ve mana">
+        <div class="vital-strip hp-vital"><strong id="hpValue">0/0 HP</strong></div>
+        <div class="vital-strip mana-vital"><strong id="manaValue">0/0 MP</strong></div>
+      </section>
+
+      <section class="hero" aria-label="Rayon sehnesi">
+        <div class="city-card">
+          <div class="equipment-slots" id="equipmentSlots" aria-label="Geyim slotlari"></div>
+          <div class="skyline" aria-hidden="true">
+            <span class="tower tower-a"></span>
+            <span class="tower tower-b"></span>
+            <span class="tower tower-c"></span>
+            <span class="tower tower-d"></span>
+            <span class="moon"></span>
+            <span class="neon-sign">BAKI</span>
+          </div>
+          <div class="street" aria-hidden="true">
+            <span class="lamp lamp-left"></span>
+            <span class="lamp lamp-right"></span>
+            <span class="car"></span>
+            <span class="crew member-one"></span>
+            <span class="crew member-two"></span>
+            <span class="spray">AVT</span>
+          </div>
+          <img class="hero-character" id="heroCharacterImage" src="assets/appearances/appearance-01.png" alt="" aria-hidden="true" />
+        </div>
+      </section>
+
+      <div class="quick-menu-wrap">
+        <span class="swipe-arrow swipe-left" aria-hidden="true">&#8249;</span>
+        <nav class="quick-menu" aria-label="Elave bolmeler">
+          <a href="appearance.html" aria-label="Obraz"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v6c0 4.4 2.8 7.7 7 9 4.2-1.3 7-4.6 7-9V6l-7-3Zm0 3.2 3.8 1.6V12c0 2.5-1.4 4.5-3.8 5.7V6.2Z"/></svg><span>Obraz</span></a>
+          <a href="bag.html" aria-label="Canta"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7V5a4 4 0 0 1 8 0v2h3l1 14H4L5 7h3Zm2 0h4V5a2 2 0 0 0-4 0v2Zm-2 4v2h8v-2H8Z"/></svg><span>Canta</span></a>
+          <a href="moves.html" aria-label="Priyomlar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.7-5.7V3H20v7h-7V7.7h3.1A5.7 5.7 0 0 0 6.3 12H4Zm16 0a8 8 0 0 1-13.7 5.7V21H4v-7h7v2.3H7.9A5.7 5.7 0 0 0 17.7 12H20Z"/></svg><span>Priyom</span></a>
+        </nav>
+        <span class="swipe-arrow swipe-right" aria-hidden="true">&#8250;</span>
+        <span class="swipe-hint" aria-hidden="true"></span>
+      </div>
+
+      <nav class="tabs bottom-tabs" aria-label="Oyun bolmeleri">
+        <button class="tab is-active" data-view="home" type="button" aria-label="Profil">
+          <img src="assets/icons/profile.png" alt="" aria-hidden="true" />
+        </button>
+        <button class="tab" data-view="craft" type="button" aria-label="Kraft">
+          <img src="assets/icons/craft.png" alt="" aria-hidden="true" />
+        </button>
+        <button class="tab" data-view="map" type="button" aria-label="Xerite">
+          <img src="assets/icons/quests.png" alt="" aria-hidden="true" />
+        </button>
+        <button class="tab" data-view="rating" type="button" aria-label="Reytinq">
+          <img src="assets/icons/rating.png" alt="" aria-hidden="true" />
+        </button>
+        <a class="tab arena-nav" href="arena.html" aria-label="Arena">
+          <img src="assets/icons/arena.png" alt="" aria-hidden="true" />
+        </a>
+      </nav>
+
+      <section class="view is-active" id="homeView" aria-label="Profil">
+        <section class="player-dock" aria-label="Oyuncu statistikasi">
+          <div class="profile-card-head">
+            <div>
+              <p id="homePlayerName">Oyuncu</p>
+              <strong id="homeRankTitle">Yeni oyuncu</strong>
+            </div>
+            <a class="dock-move" href="moves.html" title="Dvizh" aria-label="Dvizh"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.7-5.7V3H20v7h-7V7.7h3.1A5.7 5.7 0 0 0 6.3 12H4Zm16 0a8 8 0 0 1-13.7 5.7V21H4v-7h7v2.3H7.9A5.7 5.7 0 0 0 17.7 12H20Z"/></svg></a>
+          </div>
+          <div class="profile-two-col">
+            <button class="level-card level-open" id="levelOpenButton" type="button">
+              <span>Seviyye</span>
+              <strong id="levelValue">1</strong>
+            </button>
+            <article>
+              <span>Doyusler</span>
+              <strong id="battleCountValue">0</strong>
+            </article>
+            <article>
+              <span>Qelebe</span>
+              <strong id="winsValue">0</strong>
+            </article>
+            <article>
+              <span>Meglubiyyet</span>
+              <strong id="lossesValue">0</strong>
+            </article>
+          </div>
+          <div class="profile-params">
+            <article><span>Guc</span><strong id="strengthValue">0</strong></article>
+            <article><span>Ceviklik</span><strong id="agilityValue">0</strong></article>
+            <article><span>Krit</span><strong id="critValue">0%</strong></article>
+            <article><span>Dozumluluk</span><strong id="enduranceValue">0 HP</strong></article>
+            <article><span>Intellekt</span><strong id="intellectValue">0</strong></article>
+            <article class="set-bonus-card"><span>Komplekt</span><strong id="setBonusValue">Yoxdur</strong></article>
+          </div>
+          <div class="authority-progress" aria-label="Avtoritet irelileyisi">
+            <article class="authority-number">
+              <span>Avtoritet</span>
+              <strong id="authorityValue">0</strong>
+            </article>
+          </div>
+          <p class="result-line" id="battleLog"></p>
+        </section>
+      </section>
+
+      <section class="view" id="craftView" aria-label="Kraft">
+        <nav class="craft-filter" aria-label="Kraft sinfi">
+          <button class="is-active" type="button" data-craft-class="all">Hamisi</button>
+          <button type="button" data-craft-class="guc">Guc</button>
+          <button type="button" data-craft-class="krit">Krit</button>
+          <button type="button" data-craft-class="tank">Tank</button>
+          <button type="button" data-craft-class="uvorot">Uvorot</button>
+          <button type="button" data-craft-class="mag">Mag</button>
+        </nav>
+        <nav class="craft-filter craft-level-filter" aria-label="Kraft seviyesi">
+          <button type="button" data-craft-level="all">Hamisi</button>
+          <button class="is-active" type="button" data-craft-level="4">4</button>
+          <button type="button" data-craft-level="5">5</button>
+          <button type="button" data-craft-level="6">6</button>
+          <button type="button" data-craft-level="7">7</button>
+          <button type="button" data-craft-level="8">8</button>
+          <button type="button" data-craft-level="9">9</button>
+          <button type="button" data-craft-level="10">10</button>
+          <button type="button" data-craft-level="11">11</button>
+          <button type="button" data-craft-level="12">12</button>
+          <button type="button" data-craft-level="13">13</button>
+          <button type="button" data-craft-level="14">14</button>
+          <button type="button" data-craft-level="15">15</button>
+        </nav>
+        <div class="inventory-row">
+          <span><img src="assets/resources/metal.png" alt="Metal" /><strong id="metalValue">0</strong></span>
+          <span><img src="assets/resources/cloth.png" alt="Parca" /><strong id="clothValue">0</strong></span>
+          <span><img src="assets/resources/parts.png" alt="Detal" /><strong id="partsValue">0</strong></span>
+        </div>
+        <div class="cards" id="craftList"></div>
+      </section>
+
+      <section class="view" id="mapView" aria-label="Xerite">
+        <div class="city-map">
+          <img src="assets/map/street-map.png" alt="" aria-hidden="true" />
+          <button class="map-hotspot map-bazar" type="button" data-map-place="Bazar" aria-label="Bazar"><span>Bazar</span></button>
+          <button class="map-hotspot map-bank" type="button" data-map-place="Bank" aria-label="Bank"><span>Bank</span></button>
+          <a class="map-hotspot map-cave" href="caves.html" aria-label="Magara"><span>Magara</span></a>
+          <a class="map-hotspot map-pvp" href="arena.html" aria-label="PvP Arena"><span>PvP</span></a>
+        </div>
+      </section>
+
+      <section class="view" id="ratingView" aria-label="Reytinq ve referal">
+        <div class="referral-panel">
+          <div>
+            <p>Devet kodun</p>
+            <strong id="referralCode">BAKU-0000</strong>
+          </div>
+          <button class="secondary-action" id="copyReferral" type="button">Kopyala</button>
+        </div>
+        <div class="leaderboard" id="leaderboard"></div>
+      </section>
+
+    </main>
+    <dialog class="level-modal" id="levelModal" aria-label="Seviyyeler">
+      <div class="level-modal-head">
+        <div>
+          <p>Seviyyeler</p>
+          <strong>Avtoritet telebi</strong>
+        </div>
+        <button id="levelCloseButton" type="button" aria-label="Bagla">x</button>
+      </div>
+      <div class="level-list" id="levelList"></div>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>

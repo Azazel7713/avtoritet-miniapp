@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="az">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0e1012" />
+    <title>Avtoritet: Arena</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="loading.js" defer></script>
+  </head>
+  <body class="arena-entry-page">
+    <main class="arena-entry-shell">
+      <section class="arena-entry-hero" aria-label="Arena secimi">
+        <div class="arena-entry-bg" aria-hidden="true">
+          <img src="assets/arena-bg.png" alt="" />
+          <span class="arena-entry-fighter one"></span>
+          <span class="arena-entry-fighter two"></span>
+        </div>
+        <div class="arena-entry-title">
+          <p>Arena</p>
+          <h1>Doyus rejimi</h1>
+        </div>
+      </section>
+
+      <section class="arena-mode-grid" aria-label="Doyus rejimleri">
+        <a class="arena-mode-choice is-ready" href="battle.html">
+          <img src="assets/arena-modes/pve.png" alt="" aria-hidden="true" />
+          <span>
+            <strong>Botla doyus</strong>
+            <small>Seviyyene uygun reqib</small>
+          </span>
+        </a>
+        <button class="arena-mode-choice" type="button" disabled>
+          <img src="assets/arena-modes/pvp.png" alt="" aria-hidden="true" />
+          <span>
+            <strong>1x1 duel</strong>
+            <small>Canli oyuncuya qarsi</small>
+          </span>
+        </button>
+        <button class="arena-mode-choice chaos" type="button" disabled>
+          <img src="assets/arena-modes/chaos.png" alt="" aria-hidden="true" />
+          <span>
+            <strong>Kutlevi dava</strong>
+            <small>Hamisi hamiya qarsi</small>
+          </span>
+        </button>
+      </section>
+      <nav class="tabs bottom-tabs arena-bottom-tabs" aria-label="Oyun bolmeleri">
+        <a class="tab" href="index.html" aria-label="Profil">
+          <img src="assets/icons/profile.png" alt="" aria-hidden="true" />
+        </a>
+        <a class="tab" href="index.html#craft" aria-label="Kraft">
+          <img src="assets/icons/craft.png" alt="" aria-hidden="true" />
+        </a>
+        <a class="tab" href="index.html#map" aria-label="Xerite">
+          <img src="assets/icons/quests.png" alt="" aria-hidden="true" />
+        </a>
+        <a class="tab" href="index.html#rating" aria-label="Reytinq">
+          <img src="assets/icons/rating.png" alt="" aria-hidden="true" />
+        </a>
+        <a class="tab arena-nav is-active" href="arena.html" aria-label="Arena">
+          <img src="assets/icons/arena.png" alt="" aria-hidden="true" />
+        </a>
+      </nav>
+    </main>
+    <script>
+      window.Telegram?.WebApp?.ready?.();
+      window.Telegram?.WebApp?.expand?.();
+    </script>
+  </body>
+</html>

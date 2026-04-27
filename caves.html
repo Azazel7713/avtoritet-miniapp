@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="az">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0e1012" />
+    <title>Avtoritet: Magaralar</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="loading.js" defer></script>
+  </head>
+  <body class="caves-page">
+    <main class="caves-shell">
+      <section class="caves-hero">
+        <div>
+          <p>Magaralar</p>
+          <h1>Yer alti yollar</h1>
+        </div>
+      </section>
+
+      <section class="cave-list" aria-label="Magara secimi">
+        <a class="cave-choice" id="caveOneLink" href="cave.html">
+          <span class="cave-choice-art old-tunnel">
+            <img src="assets/caves/old-tunnel.png" alt="" aria-hidden="true" />
+          </span>
+          <strong>Kohne Tunel</strong>
+          <small>0 seviyye / metal, parca, detal</small>
+          <em id="caveOneStatus">Aciq</em>
+        </a>
+        <button class="cave-choice is-locked" type="button" disabled>
+          <span class="cave-choice-art deep"></span>
+          <strong>Qara Sarnic</strong>
+          <small>Tezlikle</small>
+          <em>Bagli</em>
+        </button>
+      </section>
+
+      <nav class="tabs bottom-tabs" aria-label="Oyun bolmeleri">
+        <a class="tab" href="index.html" aria-label="Profil"><img src="assets/icons/profile.png" alt="" aria-hidden="true" /></a>
+        <a class="tab" href="index.html#craft" aria-label="Kraft"><img src="assets/icons/craft.png" alt="" aria-hidden="true" /></a>
+        <a class="tab is-active" href="index.html#map" aria-label="Xerite"><img src="assets/icons/quests.png" alt="" aria-hidden="true" /></a>
+        <a class="tab" href="index.html#rating" aria-label="Reytinq"><img src="assets/icons/rating.png" alt="" aria-hidden="true" /></a>
+        <a class="tab arena-nav" href="arena.html" aria-label="Arena"><img src="assets/icons/arena.png" alt="" aria-hidden="true" /></a>
+      </nav>
+    </main>
+    <script src="caves.js"></script>
+  </body>
+</html>

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="az">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0e1012" />
+    <title>Avtoritet: 3D Arena</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="loading.js" defer></script>
+  </head>
+  <body class="arena-page">
+    <main class="arena-shell">
+      <section class="arena3d" aria-label="3D doyus sehnesi">
+        <canvas id="arenaCanvas"></canvas>
+        <div class="combat-float" id="combatFloat" aria-live="polite"></div>
+        <div class="arena-fallback" id="arenaFallback">
+          <strong>3D arena yuklenir</strong>
+          <span>Three.js baglantisi yoxlanilir.</span>
+        </div>
+        <div class="arena-standees" aria-hidden="true">
+          <img class="standee player-standee" src="assets/appearances/appearance-01.png" alt="" />
+          <img class="standee rival-standee" id="rivalStandee" src="assets/rival.png" alt="" />
+        </div>
+        <div class="arena-hud">
+          <div class="hud-card">
+            <div class="hud-name">
+              <span>Sen</span>
+              <strong id="playerHpText">HP 0/0</strong>
+            </div>
+            <div class="bar hp-bar"><span id="playerHpBar"></span></div>
+            <div class="hud-name">
+              <span>MP</span>
+              <strong id="playerManaText">0/0</strong>
+            </div>
+            <div class="bar mana-bar"><span id="playerManaBar"></span></div>
+          </div>
+
+          <div class="timer-orb">
+            <span id="roundText">R1</span>
+            <strong id="timerText">30</strong>
+          </div>
+
+          <div class="hud-card right">
+            <div class="hud-name">
+              <span id="rivalName">Reqib</span>
+              <strong id="rivalHpText">HP 0/0</strong>
+            </div>
+            <div class="bar hp-bar"><span id="rivalHpBar"></span></div>
+            <div class="hud-name">
+              <span>MP</span>
+              <strong id="rivalManaText">0/0</strong>
+            </div>
+            <div class="bar mana-bar rival-mana"><span id="rivalManaBar"></span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="arena-controls" aria-label="Doyus idaresi">
+        <div class="combo-strip" aria-label="Priyom saygaclari">
+          <span class="combo-badge" title="Adi zerbe"><b>&#9876;</b><strong id="hitCount">0</strong></span>
+          <span class="combo-badge" title="Krit"><b>&#10022;</b><strong id="critCount">0</strong></span>
+          <span class="combo-badge" title="Uvorot"><b>&#8623;</b><strong id="dodgeCount">0</strong></span>
+          <span class="combo-badge rage" title="Yaris"><b>&#9829;</b><strong id="rageCount">0</strong></span>
+        </div>
+        <p class="result-line" id="battleLog">Priyom sec ve Auto bas.</p>
+        <div class="move-actions" aria-label="Priyom secimi">
+          <button class="battle-action move-strike" data-action="strike" type="button" aria-label="Adi zerbe"><span>&#9876;</span><small>0</small></button>
+          <button class="battle-action move-heavy" data-action="heavy" type="button" aria-label="Guclu zerbe"><span>&#128165;</span><small>3</small></button>
+          <button class="battle-action move-quick" data-action="quick" type="button" aria-label="Uvorot"><span>&#8623;</span><small>0</small></button>
+          <button class="battle-action move-crush accent" data-action="crush" type="button" aria-label="Sokurucu"><span>&#10022;</span><small>5</small></button>
+        </div>
+        <div class="exchange-row">
+          <button class="primary-action" id="autoButton" type="button">Auto</button>
+        </div>
+        <button class="start-fight" id="startButton" type="button">Basla</button>
+        <em class="exchange-status" id="exchangeText">Gedis sec</em>
+      </section>
+    </main>
+
+    <script src="moves-data.js"></script>
+    <script src="battle.js"></script>
+  </body>
+</html>
