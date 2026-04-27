@@ -22,22 +22,22 @@ const defaultState = {
 };
 
 const craftClasses = [
-  { id: "guc", name: "Güc", prefix: "Dəmir Zərbə" },
-  { id: "krit", name: "Krit", prefix: "Qırmızı Kəsik" },
-  { id: "tank", name: "Tank", prefix: "Daş Divar" },
-  { id: "uvorot", name: "Uvorot", prefix: "Neon Qaçış" },
+  { id: "guc", name: "Guc", prefix: "Demir Zerbe" },
+  { id: "krit", name: "Krit", prefix: "Qirmizi Kesik" },
+  { id: "tank", name: "Tank", prefix: "Das Divar" },
+  { id: "uvorot", name: "Uvorot", prefix: "Neon Qacis" },
   { id: "mag", name: "Mag", prefix: "Mavi Mana" },
 ];
 
 const craftSlots = [
-  { id: "helmet", label: "Şlem", icon: "assets/craft-items/cap.png", suffix: "başlığı" },
-  { id: "weapon", label: "Silah", icon: "assets/craft-items/pipe.png", suffix: "silahı" },
-  { id: "offhand", label: "Sipər", icon: "assets/craft-items/guard.png", suffix: "sipəri" },
+  { id: "helmet", label: "Slem", icon: "assets/craft-items/cap.png", suffix: "basligi" },
+  { id: "weapon", label: "Silah", icon: "assets/craft-items/pipe.png", suffix: "silahi" },
+  { id: "offhand", label: "Siper", icon: "assets/craft-items/guard.png", suffix: "siperi" },
   { id: "armor", label: "Zireh", icon: "assets/craft-items/jacket.png", suffix: "zirehi" },
-  { id: "belt", label: "Kəmər", icon: "assets/craft-items/chain.png", suffix: "kəməri" },
-  { id: "gloves", label: "Əlcək", icon: "assets/craft-items/gloves.png", suffix: "əlcəyi" },
+  { id: "belt", label: "Kemer", icon: "assets/craft-items/chain.png", suffix: "kemeri" },
+  { id: "gloves", label: "Elcek", icon: "assets/craft-items/gloves.png", suffix: "elceyi" },
   { id: "leggings", label: "Ponoj", icon: "assets/craft-items/pants.png", suffix: "ponoju" },
-  { id: "boots", label: "Bot", icon: "assets/craft-items/boots.png", suffix: "botları" },
+  { id: "boots", label: "Bot", icon: "assets/craft-items/boots.png", suffix: "botlari" },
 ];
 
 const categories = {
@@ -68,12 +68,13 @@ let activeTab = "equipment";
 function craftStats(classId, slotId, level) {
   const slotBoost = { helmet: 1, weapon: 4, offhand: 2, armor: 3, belt: 2, gloves: 3, leggings: 2, boots: 2 }[slotId] || 1;
   const base = Math.max(1, Math.round(level * 0.8 + slotBoost));
+  const hpBase = level * 4 + slotBoost * 3;
   const stats = {
-    guc: { strength: base + 3 },
-    krit: { crit: Math.max(2, Math.round(level * 0.65 + slotBoost)), strength: Math.max(1, Math.round(base / 2)) },
-    tank: { endurance: base + 3, hp: level * 10 + slotBoost * 8 },
-    uvorot: { agility: base + 2, dodge: Math.max(2, Math.round(level * 0.55 + slotBoost)) },
-    mag: { intellect: base + 2, mana: level * 8 + slotBoost * 7 },
+    guc: { strength: base + 3, hp: Math.round(hpBase * 1.05) },
+    krit: { crit: Math.max(2, Math.round(level * 0.65 + slotBoost)), strength: Math.max(1, Math.round(base / 2)), hp: Math.round(hpBase * 0.85) },
+    tank: { endurance: base + 3, hp: level * 12 + slotBoost * 10 },
+    uvorot: { agility: base + 2, dodge: Math.max(2, Math.round(level * 0.55 + slotBoost)), hp: Math.round(hpBase * 0.75) },
+    mag: { intellect: base + 2, mana: level * 8 + slotBoost * 7, hp: Math.round(hpBase * 0.65) },
   };
   return stats[classId];
 }
@@ -98,12 +99,12 @@ function craftItemFromId(id) {
 
 function formatStats(stats) {
   const labels = {
-    strength: "güc",
-    agility: "çeviklik",
+    strength: "guc",
+    agility: "ceviklik",
     crit: "krit",
-    endurance: "dözümlülük",
+    endurance: "dozumluluk",
     hp: "HP",
-    dodge: "yayınma",
+    dodge: "yayinma",
     intellect: "intellekt",
     mana: "mana",
   };
@@ -140,9 +141,9 @@ function renderEquipment(state) {
         <div class="bag-item-icon"><img src="${item?.icon || `assets/equipment/${slot.id}.png`}" alt="" aria-hidden="true" /></div>
         <div>
           <strong>${item?.name || `${slot.label} slotu`}</strong>
-          <small>${item?.stat || "Boş slot"}</small>
+          <small>${item?.stat || "Bos slot"}</small>
         </div>
-        <em>${item ? "Geyinilib" : "Boş slot"}</em>
+        <em>${item ? "Geyinilib" : "Bos slot"}</em>
       </article>`;
     })
     .join("");
@@ -158,7 +159,7 @@ function renderEquipment(state) {
       <button class="bag-action" type="button" data-equip="${item.id}">Geyin</button>
     </article>`)
     .join("");
-  return `${slotCards}${inventoryCards || `<article class="bag-empty">Kraftdan sonra əşyalar burada görünəcək.</article>`}`;
+  return `${slotCards}${inventoryCards || `<article class="bag-empty">Kraftdan sonra esyalar burada gorunecek.</article>`}`;
 }
 
 function render() {
@@ -176,7 +177,7 @@ function render() {
         <strong>${item.name}</strong>
         <small>${item.stat}</small>
       </div>
-      <em>Çantada</em>
+      <em>Cantada</em>
     </article>`)
     .join("");
 }

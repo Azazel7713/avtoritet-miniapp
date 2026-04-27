@@ -180,6 +180,7 @@ function playerStats() {
   const agility = 10 + Math.floor(state.level * 1.6) + Math.floor(strength / 8) + (gearStats.agility || 0) + (setBonus.agility || 0);
   const crit = Math.min(60, 6 + Math.floor(state.level * 1.2) + Math.floor(state.authority / 180) + (gearStats.crit || 0) + (setBonus.crit || 0));
   const endurance = 110 + state.level * 12 + (gearStats.endurance || 0) + (setBonus.endurance || 0);
+  const hp = endurance + (gearStats.hp || 0) + (setBonus.hp || 0);
   const intellect = 8 + Math.floor(state.level * 1.4) + Math.floor((state.parts + state.metal) / 3) + (gearStats.intellect || 0) + (setBonus.intellect || 0);
   return {
     strength,
@@ -187,7 +188,7 @@ function playerStats() {
     crit,
     endurance,
     intellect,
-    hp: endurance,
+    hp,
     mana: gearStats.mana || 0,
     physicalArmor: Math.min(42, Math.floor(endurance / 9)),
     magicArmor: Math.min(38, Math.floor(intellect / 3)),
@@ -219,12 +220,13 @@ function gearStatsFromId(itemId) {
   const level = Number(levelText);
   const slotBoost = { helmet: 1, weapon: 4, offhand: 2, armor: 3, belt: 2, gloves: 3, leggings: 2, boots: 2 }[slotId] || 1;
   const base = Math.max(1, Math.round(level * 0.8 + slotBoost));
+  const hpBase = level * 4 + slotBoost * 3;
   const stats = {
-    guc: { strength: base + 3 },
-    krit: { crit: Math.max(2, Math.round(level * 0.65 + slotBoost)), strength: Math.max(1, Math.round(base / 2)) },
-    tank: { endurance: base + 3, hp: level * 10 + slotBoost * 8 },
-    uvorot: { agility: base + 2, dodge: Math.max(2, Math.round(level * 0.55 + slotBoost)) },
-    mag: { intellect: base + 2, mana: level * 8 + slotBoost * 7 },
+    guc: { strength: base + 3, hp: Math.round(hpBase * 1.05) },
+    krit: { crit: Math.max(2, Math.round(level * 0.65 + slotBoost)), strength: Math.max(1, Math.round(base / 2)), hp: Math.round(hpBase * 0.85) },
+    tank: { endurance: base + 3, hp: level * 12 + slotBoost * 10 },
+    uvorot: { agility: base + 2, dodge: Math.max(2, Math.round(level * 0.55 + slotBoost)), hp: Math.round(hpBase * 0.75) },
+    mag: { intellect: base + 2, mana: level * 8 + slotBoost * 7, hp: Math.round(hpBase * 0.65) },
   };
   return stats[classId] || {};
 }
